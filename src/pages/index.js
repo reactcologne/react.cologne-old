@@ -1,21 +1,72 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
-import Image from '../components/image'
 import SEO from '../components/seo'
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <SEO title="Home" />
+    <p>This site is currently under construction.</p>
+    {/* This code is messy and just a proof of concept */}
+    <StaticQuery
+      query={eventsQuery}
+      render={data => (
+        <>
+          <h2>Upcoming Meetups</h2>
+          {!data.upcomingEvents ? (
+            <p>Nothing announced yet.</p>
+          ) : (
+            data.upcomingEvents.edges.map(({ node }) => (
+              <li key={node.id}>
+                <a href={node.link}>{node.name}</a> ({node.local_date}{' '}
+                {node.local_time})
+              </li>
+            ))
+          )}
+          <hr />
+          <h2>Past Meetups</h2>
+          {!data.pastEvents ? (
+            <p>Nothing announced yet.</p>
+          ) : (
+            data.pastEvents.edges.map(({ node }) => (
+              <li key={node.id}>
+                <a href={node.link}>{node.name}</a> ({node.local_date}{' '}
+                {node.local_time})
+              </li>
+            ))
+          )}
+        </>
+      )}
+    />
   </Layout>
 )
 
 export default IndexPage
+
+const eventsQuery = graphql`
+  query EventsListQuery {
+    upcomingEvents: allMeetupcomEvent(filter: { status: { eq: "upcoming" } }) {
+      edges {
+        node {
+          ...eventFields
+        }
+      }
+    }
+    pastEvents: allMeetupcomEvent(filter: { status: { eq: "past" } }) {
+      edges {
+        node {
+          ...eventFields
+        }
+      }
+    }
+  }
+
+  fragment eventFields on meetupcom__event {
+    id
+    name
+    link
+    local_time
+    local_date
+  }
+`
