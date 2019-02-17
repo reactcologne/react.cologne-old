@@ -18,7 +18,7 @@ const Wave = ({
   colors,
   range: [rangeX = 50, rangeY = 30] = [],
   minDuration = 80,
-  maxDuration = 200,
+  maxDuration = 150,
   heightFactor = 0.85,
   flip = false,
   width,
@@ -53,8 +53,8 @@ const Wave = ({
       const Point = function(config) {
         this.anchorX = config.x
         this.anchorY = config.y
-        this.x = config.x
-        this.y = config.y
+        this.x = this.anchorX + randomIntegerInRange(0, rangeX * 2) - rangeX
+        this.y = this.anchorY + randomIntegerInRange(0, rangeY * 2) - rangeY
         this.resetTarget()
       }
 
