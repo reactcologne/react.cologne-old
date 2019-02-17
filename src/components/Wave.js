@@ -34,8 +34,8 @@ const Wave = ({
         ctx.transform(1, 0, 0, -1, 0, height)
       }
 
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.4)'
-      ctx.shadowBlur = 20
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'
+      ctx.shadowBlur = 20 * window.devicePixelRatio
       ctx.shadowOffsetX = 0
       ctx.shadowOffsetY = 0
 
