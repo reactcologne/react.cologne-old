@@ -39,16 +39,15 @@ const Wave = ({
       ctx.shadowOffsetX = 0
       ctx.shadowOffsetY = 0
 
-      const clear = () => {
-        ctx.clearRect(0, 0, width, height)
+      let gradient = ctx.createLinearGradient(width / 2, 0, width / 2, height)
+      for (let index = 0; index < colors.length; index++) {
+        gradient.addColorStop(index, colors[index])
       }
 
-      const makeGradient = height => {
-        let gradient = ctx.createLinearGradient(width / 2, 0, width / 2, height)
-        for (let index = 0; index < colors.length; index++) {
-          gradient.addColorStop(index, colors[index])
-        }
-        return gradient
+      ctx.fillStyle = gradient
+
+      const clear = () => {
+        ctx.clearRect(0, 0, width, height)
       }
 
       const Point = function(config) {
@@ -153,8 +152,6 @@ const Wave = ({
         ctx.lineTo(0, 0)
         ctx.closePath()
 
-        const maxY = Math.max(...points.map(({ y }) => y))
-        ctx.fillStyle = makeGradient(maxY)
         ctx.fill()
       }
 
