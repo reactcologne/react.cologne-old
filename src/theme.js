@@ -21,17 +21,17 @@ export const waves = [
 
 export const fonts = {
   regular: {
-    fontFamily: 'Iosevka',
+    fontFamily: 'Iosevka, Consolas, Menlo, monospace',
     fontWeight: 400,
     fontStyle: 'normal',
   },
   bold: {
-    fontFamily: 'Iosevka',
+    fontFamily: 'Iosevka, Consolas, Menlo, monospace',
     fontWeight: 700,
     fontStyle: 'normal',
   },
   italic: {
-    fontFamily: 'Iosevka',
+    fontFamily: 'Iosevka, Consolas, Menlo, monospace',
     fontWeight: 500,
     fontStyle: 'italic',
   },

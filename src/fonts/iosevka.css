@@ -2,6 +2,7 @@
   font-family: 'Iosevka';
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
   src: url('woff2/iosevka-regular.woff2') format('woff2'),
     url('woff/iosevka-regular.woff') format('woff'),
     url('ttf/iosevka-regular.ttf') format('truetype');
@@ -11,6 +12,7 @@
   font-family: 'Iosevka';
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
   src: url('woff2/iosevka-bold.woff2') format('woff2'),
     url('woff/iosevka-bold.woff') format('woff'),
     url('ttf/iosevka-bold.ttf') format('truetype');
@@ -20,6 +22,7 @@
   font-family: 'Iosevka';
   font-weight: 500;
   font-style: italic;
+  font-display: swap;
   src: url('woff2/iosevka-mediumitalic.woff2') format('woff2'),
     url('woff/iosevka-mediumitalic.woff') format('woff'),
     url('ttf/iosevka-mediumitalic.ttf') format('truetype');
