@@ -49,16 +49,6 @@ module.exports = {
             url:
               'http://api.meetup.com/react-cologne/events?status=past,upcoming&desc=true',
           },
-          {
-            typePrefix: 'slackapi__',
-            name: 'stats',
-            method: 'get',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            entityLevel: `stats`,
-            url: 'https://reactcologneslackpub.apps.railslabs.com/api/stats',
-          },
         ],
       },
     },
