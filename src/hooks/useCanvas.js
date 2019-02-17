@@ -1,12 +1,14 @@
 import { useRef, useEffect } from 'react'
 
+const isClient = typeof window === 'object'
+
 const useCanvas = (
   init,
   {
     context = '2d',
     width = 500,
     height = 500,
-    devicePixelRatio = window.devicePixelRatio || 1,
+    devicePixelRatio = isClient ? window.devicePixelRatio || 1 : 1,
     setup = () => {},
   } = {}
 ) => {
