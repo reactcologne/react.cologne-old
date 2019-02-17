@@ -1,8 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'react.cologne',
-    description:
-      'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
+    description: 'Home of the React Cologne community meetup',
     author: 'React Cologne Community',
   },
   plugins: [
