@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import format from 'date-fns/format'
+import locale from 'date-fns/locale/de'
 import {
   padding,
   position,
@@ -119,10 +121,18 @@ const IndexPage = ({
   pastEvents,
 }) => {
   const { width } = useWindowSize()
+  const description = `
+Home of the reac.cologne community meetup.
+Join us for "${upcomingEvent.name}" on ${format(
+    upcomingEvent.localDate,
+    'MMMM do'
+  )}!
+`
+  console.log(description)
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Home" description={description} />
       <Header>
         {waves.map((wave, index, { length }) => (
           <Wave
@@ -156,7 +166,9 @@ const IndexPage = ({
 
             <div css={{ marginTop: 7 }}>
               {'am '}
-              <Text bold>{upcomingEvent.localDate}</Text>
+              <Text bold>
+                {format(upcomingEvent.localDate, 'DD.MM.YYYY', { locale })}
+              </Text>
               {' um '}
               <Text bold>{upcomingEvent.localTime}</Text>
             </div>
@@ -243,7 +255,7 @@ const IndexPage = ({
               itemRenderer={({ node }) => (
                 <div key={node.id} css={{ '& + &': { marginTop: scale(1) } }}>
                   <Text as="small" style={{ display: 'block' }}>
-                    {node.localDate}
+                    {format(node.localDate, 'DD.MM.YYYY', { locale })}
                   </Text>
                   <Link style={typography.pastEventLink} href={node.link}>
                     {node.name}
