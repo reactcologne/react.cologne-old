@@ -6,6 +6,13 @@ module.exports = {
     author: 'React Cologne Community',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        '@': `${__dirname}/src`,
+      },
+    },
+    'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
@@ -31,13 +38,28 @@ module.exports = {
     {
       resolve: 'gatsby-source-apiserver',
       options: {
-        typePrefix: 'meetupcom__',
-        name: 'event',
-        method: 'get',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        url: 'http://api.meetup.com/react-cologne/events?status=past,upcoming&desc=true',
+        entitiesArray: [
+          {
+            typePrefix: 'meetupcom__',
+            name: 'event',
+            method: 'get',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            url:
+              'http://api.meetup.com/react-cologne/events?status=past,upcoming&desc=true',
+          },
+          {
+            typePrefix: 'slackapi__',
+            name: 'stats',
+            method: 'get',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            entityLevel: `stats`,
+            url: 'https://reactcologneslackpub.apps.railslabs.com/api/stats',
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
