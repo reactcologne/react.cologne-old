@@ -294,8 +294,6 @@ const eventsQuery = graphql`
     link
     localTime: local_time
     localDate: local_date
-    rsvpLimit: rsvp_limit
-    yesCount: yes_rsvp_count
 
     venue {
       name
