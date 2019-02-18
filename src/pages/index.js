@@ -165,11 +165,11 @@ Join us for "${upcomingEvent.name}" on ${format(
             </Link>
 
             <div css={{ marginTop: 7 }}>
-              {'am '}
+              {'on '}
               <Text bold>
                 {format(upcomingEvent.localDate, 'DD.MM.YYYY', { locale })}
               </Text>
-              {' um '}
+              {' at '}
               <Text bold>{upcomingEvent.localTime}</Text>
             </div>
 
