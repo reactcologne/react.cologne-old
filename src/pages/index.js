@@ -237,7 +237,7 @@ Join us for "${upcomingEvent.name}" on ${format(
           points={4}
           heightFactor={0.5}
           width={width}
-          height={150}
+          height={100}
           css={{ position: 'absolute', bottom: 0, left: 0 }}
         />
       </Middle>

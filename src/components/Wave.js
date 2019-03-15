@@ -16,9 +16,9 @@ const ease = (time, b, c, d) => {
 const Wave = ({
   points: pointsCount,
   colors,
-  range: [rangeX = 50, rangeY = 30] = [],
+  range: [rangeX = 50, rangeY = 40] = [],
   minDuration = 80,
-  maxDuration = 150,
+  maxDuration = 140,
   heightFactor = 0.85,
   flip = false,
   width,

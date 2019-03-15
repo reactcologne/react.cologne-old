@@ -14,8 +14,8 @@ export const colors = {
 }
 
 export const waves = [
-  { points: 3, colors: ['#00baff', colors.skyward] },
-  { points: 3, colors: ['rebeccapurple', colors.shnurple] },
+  { points: 4, colors: [colors.shnurple, colors.skyward] },
+  { points: 4, colors: [colors.rosy, colors.shnurple] },
   { points: 4, colors: [colors.beach, colors.rosy] },
 ]
 
