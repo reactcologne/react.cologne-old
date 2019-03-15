@@ -3,6 +3,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import format from 'date-fns/format'
 import locale from 'date-fns/locale/de'
+import dedent from 'dedent'
 import {
   padding,
   position,
@@ -65,7 +66,7 @@ const Header = styled.header({
 const Middle = styled.section({
   position: 'relative',
   flex: 1,
-  ...padding(scale(5), scale(3), scale(6)),
+  ...padding(scale(6), scale(3), scale(5)),
 })
 
 const Footer = styled.footer({
@@ -76,7 +77,39 @@ const Footer = styled.footer({
   ...padding(scale(4), scale(3), scale(6)),
 })
 
-const NextEvent = ({ children }) => (
+const NextEvent = ({ event }) => (
+  <HeaderBox>
+    <div>{'// Next Event'}</div>
+
+    <Spacer />
+
+    <Link href={event.link} style={typography.eventLink}>
+      <div>{event.name}</div>
+    </Link>
+
+    <div css={{ marginTop: 7 }}>
+      {'am '}
+      <Text bold>{format(event.localDate, 'DD.MM.YYYY', { locale })}</Text>
+      {' um '}
+      <Text bold>{event.localTime}</Text>
+    </div>
+
+    <Spacer unit={2} />
+
+    <Link
+      style={typography.locationLink}
+      href={`https://maps.google.com/?q=${event.venue.address}, ${
+        event.venue.city
+      }`}
+    >
+      @ {event.venue.name}, {event.venue.address}
+      {' in '}
+      {event.venue.city}
+    </Link>
+  </HeaderBox>
+)
+
+const HeaderBox = ({ children }) => (
   <div
     css={{
       position: 'relative',
@@ -114,25 +147,32 @@ const NextEvent = ({ children }) => (
   </div>
 )
 
-const IndexPage = ({
-  upcomingEvents: {
+const IndexPage = ({ upcomingEvents, pastEvents }) => {
+  const {
     edges: [{ node: upcomingEvent }],
-  },
-  pastEvents,
-}) => {
+  } = upcomingEvents || { edges: [{ node: null }] }
   const { width } = useWindowSize()
-  const description = `
-Home of the reac.cologne community meetup.
-Join us for "${upcomingEvent.name}" on ${format(
-    upcomingEvent.localDate,
-    'MMMM do'
-  )}!
-`
-  console.log(description)
 
   return (
     <Layout>
-      <SEO title="Home" description={description} />
+      {upcomingEvent ? (
+        <SEO
+          title="Home"
+          description={dedent`
+            Home of the react.cologne community meetup.
+            Join us for "${upcomingEvent.name}" on ${format(
+            upcomingEvent.localDate,
+            'MMMM do'
+          )}!`}
+        />
+      ) : (
+        <SEO
+          title="Home"
+          description={dedent`
+            Home of the react.cologne community meetup
+          `}
+        />
+      )}
       <Header>
         {waves.map((wave, index, { length }) => (
           <Wave
@@ -144,48 +184,28 @@ Join us for "${upcomingEvent.name}" on ${format(
           />
         ))}
 
+        <Text
+          type="sectionHeader"
+          as="h1"
+          css={{
+            position: 'relative',
+            zIndex: 1,
+            textShadow: `1px 1px 2px ${darken(0.1, colors.rosy)}`,
+          }}
+        >
+          {'<React.Cologne />'}
+        </Text>
+
         <WidthConstraint>
-          <Text
-            type="sectionHeader"
-            as="h1"
-            css={{
-              textShadow: `1px 1px 2px ${darken(0.1, colors.rosy)}`,
-            }}
-          >
-            {'<React.Cologne />'}
-          </Text>
-
-          <NextEvent>
-            <div>{'// Next Event'}</div>
-
-            <Spacer />
-
-            <Link href={upcomingEvent.link} style={typography.eventLink}>
-              <div>{upcomingEvent.name}</div>
-            </Link>
-
-            <div css={{ marginTop: 7 }}>
-              {'am '}
-              <Text bold>
-                {format(upcomingEvent.localDate, 'DD.MM.YYYY', { locale })}
+          {upcomingEvent ? (
+            <NextEvent event={upcomingEvent} />
+          ) : (
+            <HeaderBox>
+              <Text type="sectionHeader" as="h2" italic>
+                {'/* No upcoming event, check back soon! */'}
               </Text>
-              {' um '}
-              <Text bold>{upcomingEvent.localTime}</Text>
-            </div>
-
-            <Spacer unit={2} />
-
-            <Link
-              style={typography.locationLink}
-              href={`https://maps.google.com/?q=${
-                upcomingEvent.venue.address
-              }, ${upcomingEvent.venue.city}`}
-            >
-              @ {upcomingEvent.venue.name}, {upcomingEvent.venue.address}
-              {' in '}
-              {upcomingEvent.venue.city}
-            </Link>
-          </NextEvent>
+            </HeaderBox>
+          )}
         </WidthConstraint>
       </Header>
 
@@ -205,7 +225,10 @@ Join us for "${upcomingEvent.name}" on ${format(
           <Flex>
             <CallToAction
               image={<SlackLogo />}
-              text="The React Cologne meetup is a community effort. We want to build a meetup for the community, by the community. Join our Slack workspace to get invovled in the meetup or just to chat a little. Everyone is welcome!"
+              text={`
+                The React Cologne meetup is a community effort. We want to build a meetup for the community, by the community.
+                Join our Slack workspace to get invovled in the meetup or just to chat a little. Everyone is welcome!
+              `}
               action={
                 <Link
                   href="https://reactcologne-slack.herokuapp.com/"
