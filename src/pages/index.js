@@ -66,7 +66,7 @@ const Header = styled.header({
 const Middle = styled.section({
   position: 'relative',
   flex: 1,
-  ...padding(scale(6), scale(3), scale(5)),
+  ...padding(scale(6), scale(3), scale(6)),
 })
 
 const Footer = styled.footer({
