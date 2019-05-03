@@ -57,17 +57,39 @@ const CallToAction = ({ image, text, action }) => (
   </Flex>
 )
 
-const Header = styled.header({
-  ...padding(scale(2), scale(3), scale(0)),
-  position: 'relative',
-  zIndex: 1,
-})
+const Header = styled.header`
+  padding: 2rem 3rem 0;
+  position: relative;
+  z-index: 1;
 
-const Middle = styled.section({
-  position: 'relative',
-  flex: 1,
-  ...padding(scale(6), scale(3), scale(6)),
-})
+  @media (max-width: 600px) {
+    padding: 1rem 1.5rem 0;
+  }
+`;
+
+const HeaderBoxContent = styled.main`
+    font-size: 1rem;
+    color: ${colors.snark};
+
+    @media (max-width: 600px) {
+      margin-top: 2.5rem;
+    }
+`
+
+const VenueLink = styled(Link)`
+  font-size: 1rem;
+  color: ${colors.rosy};
+
+  @media (max-width: 600px) {
+    color: #fff;
+  }
+`
+
+const Middle = styled.section`
+  position: relative;
+  flex: 1;
+  padding: 6rem 3rem;
+`;
 
 const Footer = styled.footer({
   color: colors.snark,
@@ -96,8 +118,7 @@ const NextEvent = ({ event }) => (
 
     <Spacer unit={2} />
 
-    <Link
-      style={typography.locationLink}
+    <VenueLink
       href={`https://maps.google.com/?q=${event.venue.address}, ${
         event.venue.city
       }`}
@@ -105,7 +126,7 @@ const NextEvent = ({ event }) => (
       @ {event.venue.name}, {event.venue.address}
       {' in '}
       {event.venue.city}
-    </Link>
+    </VenueLink>
   </HeaderBox>
 )
 
@@ -135,14 +156,9 @@ const HeaderBox = ({ children }) => (
         ...padding(30, 50, 50, 30),
       }}
     >
-      <main
-        css={{
-          fontSize: scale(0),
-          color: colors.snark,
-        }}
-      >
+      <HeaderBoxContent>
         {children}
-      </main>
+      </HeaderBoxContent>
     </Flex>
   </div>
 )
