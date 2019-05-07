@@ -65,15 +65,15 @@ const Header = styled.header`
   @media (max-width: 600px) {
     padding: 1rem 1.5rem 0;
   }
-`;
+`
 
 const HeaderBoxContent = styled.main`
-    font-size: 1rem;
-    color: ${colors.snark};
+  font-size: 1rem;
+  color: ${colors.snark};
 
-    @media (max-width: 600px) {
-      margin-top: 2.5rem;
-    }
+  @media (max-width: 600px) {
+    margin-top: 2.5rem;
+  }
 `
 
 const VenueLink = styled(Link)`
@@ -89,7 +89,7 @@ const Middle = styled.section`
   position: relative;
   flex: 1;
   padding: 6rem 3rem;
-`;
+`
 
 const Footer = styled.footer({
   color: colors.snark,
@@ -156,9 +156,7 @@ const HeaderBox = ({ children }) => (
         ...padding(30, 50, 50, 30),
       }}
     >
-      <HeaderBoxContent>
-        {children}
-      </HeaderBoxContent>
+      <HeaderBoxContent>{children}</HeaderBoxContent>
     </Flex>
   </div>
 )
