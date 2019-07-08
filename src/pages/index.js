@@ -162,9 +162,9 @@ const HeaderBox = ({ children }) => (
 )
 
 const IndexPage = ({ upcomingEvents, pastEvents }) => {
-  const {
-    edges: [{ node: upcomingEvent }],
-  } = upcomingEvents || { edges: [{ node: null }] }
+  const upcomingEvent = upcomingEvents
+    ? upcomingEvents.edges.reverse()[0].node
+    : null
   const { width } = useWindowSize()
 
   return (
