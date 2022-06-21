@@ -324,39 +324,41 @@ const IndexPage = () => {
   )
 }
 
-export default () => (
-  <StaticQuery query={eventsQuery} render={data => <IndexPage {...data} />} />
-)
+export default () => <IndexPage />
 
-const eventsQuery = graphql`
-  query EventsListQuery {
-    upcomingEvents: allMeetupcomEvent(filter: { status: { eq: "upcoming" } }) {
-      edges {
-        node {
-          ...eventFields
-        }
-      }
-    }
-    pastEvents: allMeetupcomEvent(filter: { status: { eq: "past" } }) {
-      edges {
-        node {
-          ...eventFields
-        }
-      }
-    }
-  }
+// export default () => (
+//   <StaticQuery query={eventsQuery} render={data => <IndexPage {...data} />} />
+// )
 
-  fragment eventFields on meetupcom__event {
-    id
-    name
-    link
-    localTime: local_time
-    localDate: local_date
+// const eventsQuery = graphql`
+//   query EventsListQuery {
+//     upcomingEvents: allMeetupcomEvent(filter: { status: { eq: "upcoming" } }) {
+//       edges {
+//         node {
+//           ...eventFields
+//         }
+//       }
+//     }
+//     pastEvents: allMeetupcomEvent(filter: { status: { eq: "past" } }) {
+//       edges {
+//         node {
+//           ...eventFields
+//         }
+//       }
+//     }
+//   }
 
-    venue {
-      name
-      address: address_1
-      city
-    }
-  }
-`
+//   fragment eventFields on meetupcom__event {
+//     id
+//     name
+//     link
+//     localTime: local_time
+//     localDate: local_date
+
+//     venue {
+//       name
+//       address: address_1
+//       city
+//     }
+//   }
+// `
