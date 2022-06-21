@@ -34,23 +34,6 @@ module.exports = {
         icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: 'gatsby-source-apiserver',
-      options: {
-        entitiesArray: [
-          {
-            typePrefix: 'meetupcom__',
-            name: 'event',
-            method: 'get',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            url:
-              'http://api.meetup.com/react-cologne/events?status=past,upcoming&desc=true',
-          },
-        ],
-      },
-    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
