@@ -161,10 +161,19 @@ const HeaderBox = ({ children }) => (
   </div>
 )
 
-const IndexPage = ({ upcomingEvents, pastEvents }) => {
-  const upcomingEvent = upcomingEvents
-    ? upcomingEvents.edges.reverse()[0].node
-    : null
+const upcomingEvent = {
+  name: "React Cologne #15 – Comeback IRL",
+  link: "https://www.meetup.com/de-DE/React-Cologne/events/285961248/",
+  localDate: "2022-06-23",
+  localTime: "18:30",
+  venue: {
+    address: "Balthasarstraße 79",
+    name: "QOSSMIC GmbH",
+    city: "Köln"
+  }
+}
+
+const IndexPage = () => {
   const { width } = useWindowSize()
 
   return (
